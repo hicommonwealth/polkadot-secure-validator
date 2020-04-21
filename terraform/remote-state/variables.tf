@@ -1,7 +1,7 @@
 variable "state_project" {
-  default = "my_project"
+  default = "edgeware-validators"
 }
 
 variable "name" {
-  default = "my_name"
+  default = "eedgeware-validators"
 }

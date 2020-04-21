@@ -4,6 +4,6 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "imagestore" {
-  name          = var.name
+  name          = "edgeware-validators"
   force_destroy = true
 }
