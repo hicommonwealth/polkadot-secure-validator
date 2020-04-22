@@ -1,7 +1,8 @@
 {
   "project": "edgeware-secure-validator",
   "polkadotBinary": {
-    "url":"https://github.com/hicommonwealth/edgeware/releases/download/v3.0.1/edgeware"
+    "url": "https://github.com/hicommonwealth/edgeware/releases/download/v3.0.1/edgeware",
+    "checksum": "sha256:8526b29d3c4fb50b0b14e8bbd8802d11c11a86d8dfefe56256b924287514e514"
   },
   "nodeExporter": {
     "enabled": true,
