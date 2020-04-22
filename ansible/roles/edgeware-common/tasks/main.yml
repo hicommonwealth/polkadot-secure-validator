@@ -1,0 +1,102 @@
+---
+# tasks file for edgeware
+- name: create edgeware group
+  group:
+    name: edgeware
+    state: present
+
+- name: add edgeware user
+  user:
+    name: edgeware
+    group: edgeware
+    append: yes
+
+- name: edgeware binary checksum
+  shell: |
+    set -o pipefail
+    if [ -f /usr/local/bin/edgeware ] && \
+       [ -f  /etc/systemd/system/edgeware.service ] && \
+       [ "$(echo -n '{{ edgeware_binary_checksum }}' | cut -f1 -d':')" != "$(cat /usr/local/bin/edgeware | sha256sum | cut -f1 -d' ')" ]; then
+      echo yes
+    else
+      echo no
+    fi
+  args:
+    executable: /bin/bash
+  register: should_upgrade
+  changed_when: False
+
+- name: download edgeware binary
+  get_url:
+    url: '{{ edgeware_binary_url | quote }}'
+    checksum: '{{ edgeware_binary_checksum | quote }}'
+    dest: /usr/local/bin/edgeware-new
+    mode: '0700'
+    owner: 'edgeware'
+    group: 'edgeware'
+
+- name: check if edgeware service is running
+  shell: |
+    set -o pipefail
+    systemctl is-active --quiet edgeware
+    if [ "$?" == 0 ]; then
+      echo yes
+    else
+      cp /usr/local/bin/edgeware-new /usr/local/bin/edgeware
+      chown edgeware:edgeware /usr/local/bin/edgeware
+      echo no
+    fi
+  args:
+    executable: /bin/bash
+  register: edgeware_service_running
+  changed_when: false
+
+- name: create edgeware dummy config
+  template:
+    src: edgeware.service.j2
+    dest: /etc/systemd/system/edgeware.service
+    owner: root
+    group: root
+    mode: 0600
+  when: edgeware_service_running.stdout == "no"
+
+- name: start edgeware dummy service
+  systemd:
+    name: edgeware.service
+    state: started
+  changed_when: false
+  when: edgeware_service_running.stdout == "no"
+
+- name: save networkState
+  uri:
+    url: http://localhost:9933
+    method: "POST"
+    body_format: json
+    body: |
+      { "jsonrpc":"2.0", "method":"system_networkState", "params":[], "id":1 }
+  register: network_state
+  until: network_state.status == 200
+  retries: 10
+  delay: 5
+
+- name: set peer id as fact
+  set_fact:
+    p2p_peer_id: "{{ network_state.json.result.peerId }}"
+
+- name: stop edgeware dummy service
+  systemd:
+    name: edgeware.service
+    state: stopped
+  changed_when: false
+  when: edgeware_service_running.stdout == "no"
+
+- name: cronjob for restarting edgeware service
+  cron:
+    name: "restart edgeware"
+    minute: "{{ edgeware_restart_minute }}"
+    hour: "{{ edgeware_restart_hour }}"
+    day: "{{ edgeware_restart_day }}"
+    month: "{{ edgeware_restart_month }}"
+    weekday: "{{ edgeware_restart_weekday }}"
+    job: "/bin/systemctl restart edgeware.service"
+  when: "edgeware_restart_enabled|default(false)|bool"

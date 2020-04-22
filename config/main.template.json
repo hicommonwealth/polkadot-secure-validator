@@ -1,8 +1,8 @@
 {
   "project": "<whatever-name-you-want>",
-  "polkadotBinary": {
-    "url": "<url-to-most-recent-polkadot-binary>",
-    "checksum": "sha256:<checksum-of-most-recent-polkadot-binary>"
+  "edgewareBinary": {
+    "url": "<url-to-most-recent-edgeware-binary>",
+    "checksum": "sha256:<checksum-of-most-recent-edgeware-binary>"
   },
   "nodeExporter": {
     "enabled": true,
@@ -11,7 +11,7 @@
       "checksum": "sha256:b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424"
     }
   },
-  "polkadotNetworkId": "<polkadot-network-id>",
+  "edgewareNetworkId": "<edgeware-network-id>",
   "state": {
     "project": "<gcp-state-project-id>"
   },

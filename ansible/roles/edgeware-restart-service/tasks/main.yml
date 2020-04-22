@@ -1,0 +1,4 @@
+- name: rstart edgeware service
+  systemd:
+    name: edgeware.service
+    state: restarted

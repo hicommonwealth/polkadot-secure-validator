@@ -1,7 +1,7 @@
 {
   "project": "w3f",
-  "polkadotBinary": {
-    "url": "https://github.com/w3f/polkadot/releases/download/v0.7.29/polkadot",
+  "edgewareBinary": {
+    "url": "https://github.com/w3f/edgeware/releases/download/v0.7.29/edgeware",
     "checksum": "sha256:e229f984c89e2d40a1786ea634d3eae167c30bb0a5b742cfd800a067a4ed146d"
   },
   "nodeExporter": {
@@ -11,7 +11,7 @@
       "checksum": "sha256:b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424"
     }
   },
-  "polkadotNetworkId": "ksmcc3",
+  "edgewareNetworkId": "ksmcc3",
   "state": {
     "project": "my_gcp_state_project"
   },

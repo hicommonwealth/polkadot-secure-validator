@@ -1,0 +1,25 @@
+---
+# tasks file for edgeware-public
+- name: create edgeware service file
+  template:
+    src: edgeware.service.j2
+    dest: /etc/systemd/system/edgeware.service
+    owner: root
+    group: root
+    mode: 0600
+
+- name: restart edgeware service
+  shell: |
+    set -o pipefail
+    systemctl stop edgeware.service || true
+
+    if [ -f /usr/local/bin/edgeware-new ]; then
+      cp /usr/local/bin/edgeware-new /usr/local/bin/edgeware
+      chown edgeware:edgeware /usr/local/bin/edgeware
+      chmod a+x /usr/local/bin/edgeware
+    fi
+    systemctl daemon-reload
+    systemctl start edgeware.service
+  args:
+    executable: /bin/bash
+  changed_when: False

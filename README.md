@@ -1,8 +1,8 @@
-[![CircleCI](https://circleci.com/gh/w3f/polkadot-secure-validator.svg?style=svg)](https://circleci.com/gh/w3f/polkadot-secure-validator)
+[![CircleCI](https://circleci.com/gh/w3f/edgeware-secure-validator.svg?style=svg)](https://circleci.com/gh/w3f/edgeware-secure-validator)
 
-# Polkadot Secure Validator Setup
+# edgeware Secure Validator Setup
 
-This repo describes a potential setup for a Polkadot validator that aims to prevent
+This repo describes a potential setup for a edgeware validator that aims to prevent
 some types of potential attacks.
 
 ## How to use
@@ -14,7 +14,7 @@ NodeJS, Yarn and Git installed with:
 
 ### Prerequisites
 
-Before using polkadot-secure-validator you need to have installed:
+Before using edgeware-secure-validator you need to have installed:
 
 * NodeJS (we recommend using [nvm](https://github.com/nvm-sh/nvm))
 
@@ -35,7 +35,7 @@ and VPC write access.
 `TF_VAR_client_secret` (same as `ARM_CLIENT_SECRET`). All these credentials
 should correspond to a service principal with at least a `Contributor` role,
 see [here](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)
-for details or [create an issue](https://github.com/w3f/polkadot-secure-validator/issues/new) for
+for details or [create an issue](https://github.com/w3f/edgeware-secure-validator/issues/new) for
 finer grained access control.
 * GCP: `GOOGLE_APPLICATION_CREDENTIALS` (path to json file with credentials of
 the service account you want to use; this service account needs to have write
@@ -43,7 +43,7 @@ access to compute and network resources).
 * PACKET: `TF_VAR_auth_token`.
 
 The tool allows you to specify which providers to use, so you don't need to have
-accounts in all of them, see [here](https://github.com/w3f/polkadot-secure-validator/blob/master/config/main.sample.json)
+accounts in all of them, see [here](https://github.com/w3f/edgeware-secure-validator/blob/master/config/main.sample.json)
 for an example of how to define the providers. You could use, for instance,
 packet for the validators and GCP for the public nodes. Keep in mind that, the
 more distributed your public nodes, the fewer opportunities to be affected by
@@ -96,12 +96,12 @@ $ yarn clean -c config/main.json
 
 The secure validator setup is composed of a bare-metal machine that runs the
 actual validator and a set of cloud nodes connected to it. The validator is
-isolated from the internet and only has access to the Polkadot network through
+isolated from the internet and only has access to the edgeware network through
 the cloud nodes, which are accessible from the internet and are connected to
-the rest of the Polkadot network.
+the rest of the edgeware network.
 
 The connection between the validator node and the cloud nodes is performed
-defining a VPN to which all these nodes belong. The Polkadot instance running in
+defining a VPN to which all these nodes belong. The edgeware instance running in
 the validator node is configured to only listen on the VPN-attached interface,
 and uses the cloud node's VPN address in the `--reserved-nodes` parameter. It is
 also protected by a firewall that only allows connections on the VPN port.
@@ -181,19 +181,19 @@ configuration applied depend on the type of node:
         Endpoint = 45.243.244.130:51820
         ```
 
-    * Polkadot setup: create a Polkadot user and group and download the binary.
+    * edgeware setup: create a edgeware user and group and download the binary.
 
 * Public nodes:
 
-    * Start Polkadot service: the public nodes are started and we make the libp2p peer
+    * Start edgeware service: the public nodes are started and we make the libp2p peer
     id of the node available to ansible. The generated systemd unit looks like:
 
         ```
         [Unit]
-        Description=Polkadot Node
+        Description=edgeware Node
 
         [Service]
-        ExecStart=/usr/local/bin/polkadot \
+        ExecStart=/usr/local/bin/edgeware \
             --name sv-public-0 \
             --sentry
 
@@ -205,16 +205,16 @@ configuration applied depend on the type of node:
 
 * Private (validator) node:
 
-    * Start Polkadot service: the private (validator) node is started with the node's VPN address as part
+    * Start edgeware service: the private (validator) node is started with the node's VPN address as part
     of the listen multiaddr and the multiaddr of the public nodes (with the peer id
     from the previous stage and the VPN addresses) as `reserved-nodes`. It looks like:
 
         ```
         [Unit]
-        Description=Polkadot Node
+        Description=edgeware Node
 
         [Service]
-        ExecStart=/usr/local/bin/polkadot \
+        ExecStart=/usr/local/bin/edgeware \
             --name sv-private \
             --validator \
             --listen-addr=/ip4/10.0.0.1/tcp/30333 \
@@ -465,7 +465,7 @@ nodes, the don't have access to the validator.
           "secs": 0
         },
         "open": true,
-        "versionString": "parity-polkadot/v0.5.0-4e53ad1-x86_64-linux-gnu (unknown)"
+        "versionString": "parity-edgeware/v0.5.0-4e53ad1-x86_64-linux-gnu (unknown)"
       },
 
       [ ........ ]

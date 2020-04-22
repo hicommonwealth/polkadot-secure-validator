@@ -1,0 +1,23 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: edgeware-common-instance
+    image: ubuntu:bionic
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  inventory:
+    host_vars:
+      edgeware-common-instance:
+        edgeware_binary_url: 'https://github.com/w3f/edgeware/releases/download/v0.6.2/edgeware'
+        edgeware_binary_checksum: 'sha256:b90443105acf9dbda67bada39541487bc05d935c57275aaf1daafbe5c8a42f3b'
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

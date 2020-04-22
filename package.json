@@ -1,8 +1,8 @@
 {
-  "name": "polkadot-secure-validator",
+  "name": "edgeware-secure-validator",
   "version": "1.0.0",
   "main": "src/index.js",
-  "repository": "https://github.com/w3f/polkadot-secure-validator",
+  "repository": "https://github.com/w3f/edgeware-secure-validator",
   "author": "W3F Infrastructure Team <devops@web3.foundation>",
   "license": "GPL-3.0",
   "scripts": {
@@ -13,7 +13,7 @@
     "pretest": "yarn lint"
   },
   "bin": {
-    "polkadot-secure-validator": "src/index.js"
+    "edgeware-secure-validator": "src/index.js"
   },
   "files": [
     "/ansible",

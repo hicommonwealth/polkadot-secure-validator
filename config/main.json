@@ -1,6 +1,6 @@
 {
   "project": "edgeware-secure-validator",
-  "polkadotBinary": {
+  "edgewareBinary": {
     "url": "https://github.com/hicommonwealth/edgeware-node/releases/download/v3.0.1/edgeware",
     "checksum": "sha256:8526b29d3c4fb50b0b14e8bbd8802d11c11a86d8dfefe56256b924287514e514"
   },
@@ -11,7 +11,7 @@
       "checksum": "sha256:b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424"
     }
   },
-  "polkadotNetworkId": "edgeware",
+  "edgewareNetworkId": "edgeware",
   "state": {
     "project": "edgeware-validators"
   },

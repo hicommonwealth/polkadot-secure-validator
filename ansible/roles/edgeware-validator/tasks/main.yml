@@ -1,0 +1,61 @@
+---
+# tasks file for edgeware-validator
+- name: create edgeware service file
+  template:
+    src: edgeware.service.j2
+    dest: /etc/systemd/system/edgeware.service
+    owner: root
+    group: root
+    mode: 0600
+
+- name: restart edgeware service
+  shell: |
+    set -o pipefail
+    systemctl stop edgeware.service || true
+
+    if [ -f /usr/local/bin/edgeware-new ]; then
+      cp /usr/local/bin/edgeware-new /usr/local/bin/edgeware
+      chown edgeware:edgeware /usr/local/bin/edgeware
+      chmod a+x /usr/local/bin/edgeware
+    fi
+    systemctl daemon-reload
+    systemctl start edgeware.service
+  args:
+    executable: /bin/bash
+  changed_when: False
+
+- name: check if keys already exist
+  shell: |
+    set -o pipefail
+    if [ -d /home/edgeware/.local/share/edgeware/chains/{{ edgeware_network_id }}/keystore ]; then
+      ls /home/edgeware/.local/share/edgeware/chains/{{ edgeware_network_id }}/keystore -1U | wc -l
+    else
+      mkdir -p /home/edgeware/.local/share/edgeware/chains/{{ edgeware_network_id }}/
+      chown -R edgeware:edgeware /home/edgeware/.local/share/edgeware
+      echo 0
+    fi
+  args:
+    executable: /bin/bash
+  register: keystore_files
+  changed_when: False
+
+- name: initialize server keys
+  uri:
+    url: http://localhost:9933
+    method: "POST"
+    body_format: json
+    body: |
+      { "jsonrpc":"2.0", "method":"author_rotateKeys", "params":[], "id":1 }
+  when: keystore_files.stdout == "0"
+  register: rotate_keys
+
+- name: show rotateKeys output
+  debug:
+    var: rotate_keys
+  when: keystore_files.stdout == "0"
+
+- name: save rotateKeys output
+  copy:
+    content: "{{ rotate_keys.json }}"
+    dest: /home/edgeware/rotate_keys.log
+  when: keystore_files.stdout == "0"

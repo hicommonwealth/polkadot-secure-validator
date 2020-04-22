@@ -32,19 +32,19 @@ jobs:
       ROLE_PATH: ansible/roles/common
     <<: *ansibleIntegrationTest
 
-  polkadotCommonIntegrationTest:
+  edgewareCommonIntegrationTest:
     environment:
-      ROLE_PATH: ansible/roles/polkadot-common
+      ROLE_PATH: ansible/roles/edgeware-common
     <<: *ansibleIntegrationTest
 
-  polkadotPublicIntegrationTest:
+  edgewarePublicIntegrationTest:
     environment:
-      ROLE_PATH: ansible/roles/polkadot-public
+      ROLE_PATH: ansible/roles/edgeware-public
     <<: *ansibleIntegrationTest
 
-  polkadotValidatorIntegrationTest:
+  edgewareValidatorIntegrationTest:
     environment:
-      ROLE_PATH: ansible/roles/polkadot-validator
+      ROLE_PATH: ansible/roles/edgeware-validator
     <<: *ansibleIntegrationTest
 
   vpnpeerIntegrationTest:
@@ -57,9 +57,9 @@ jobs:
       ROLE_PATH: ansible/roles/vpnpeer-setup
     <<: *ansibleIntegrationTest
 
-  polkadotValidatorSessionInfoIntegrationTest:
+  edgewareValidatorSessionInfoIntegrationTest:
     environment:
-      ROLE_PATH: ansible/roles/polkadot-validator-session-info
+      ROLE_PATH: ansible/roles/edgeware-validator-session-info
     <<: *ansibleIntegrationTest
 
   nodeExporterIntegrationTest:
@@ -91,25 +91,25 @@ workflows:
               only: /.*/
           requires:
             - lint
-      - polkadotCommonIntegrationTest:
+      - edgewareCommonIntegrationTest:
           filters:
             tags:
               only: /.*/
           requires:
             - lint
-      - polkadotPublicIntegrationTest:
+      - edgewarePublicIntegrationTest:
           filters:
             tags:
               only: /.*/
           requires:
             - lint
-      - polkadotValidatorIntegrationTest:
+      - edgewareValidatorIntegrationTest:
           filters:
             tags:
               only: /.*/
           requires:
             - lint
-      - polkadotValidatorSessionInfoIntegrationTest:
+      - edgewareValidatorSessionInfoIntegrationTest:
           filters:
             tags:
               only: /.*/
@@ -141,10 +141,10 @@ workflows:
               ignore: /.*/
           requires:
             - commonIntegrationTest
-            - polkadotCommonIntegrationTest
-            - polkadotPublicIntegrationTest
-            - polkadotValidatorIntegrationTest
-            - polkadotValidatorSessionInfoIntegrationTest
+            - edgewareCommonIntegrationTest
+            - edgewarePublicIntegrationTest
+            - edgewareValidatorIntegrationTest
+            - edgewareValidatorSessionInfoIntegrationTest
             - vpnpeerIntegrationTest
             - vpnpeerSetupIntegrationTest
             - nodeExporterIntegrationTest

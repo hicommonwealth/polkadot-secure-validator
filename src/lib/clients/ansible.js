@@ -44,9 +44,9 @@ class Ansible {
     const data = {
       project: this.config.project,
 
-      polkadotBinaryUrl: this.config.polkadotBinary.url,
-      polkadotBinaryChecksum: this.config.polkadotBinary.checksum,
-      polkadotNetworkId: this.config.polkadotNetworkId || 'ksmcc2',
+      edgewareBinaryUrl: this.config.edgewareBinary.url,
+      edgewareBinaryChecksum: this.config.edgewareBinary.checksum,
+      edgewareNetworkId: this.config.edgewareNetworkId || 'ksmcc2',
 
       validators,
       publicNodes,
@@ -59,9 +59,9 @@ class Ansible {
 
       buildDir,
 
-      polkadotAdditionalCommonFlags: this.config.additionalFlags,
-      polkadotAdditionalValidatorFlags: this.config.validators.additionalFlags,
-      polkadotAdditionalPublicFlags: this.config.publicNodes.additionalFlags,
+      edgewareAdditionalCommonFlags: this.config.additionalFlags,
+      edgewareAdditionalValidatorFlags: this.config.validators.additionalFlags,
+      edgewareAdditionalPublicFlags: this.config.publicNodes.additionalFlags,
     };
     if (this.config.nodeExporter && this.config.nodeExporter.enabled) {
       data.nodeExporterEnabled = true;
@@ -72,15 +72,15 @@ class Ansible {
     } else {
       data.nodeExporterEnabled = false;
     }
-    if (this.config.polkadotRestart && this.config.polkadotRestart.enabled) {
-      data.polkadotRestartEnabled = true;
-      data.polkadotRestartMinute = this.config.polkadotRestart.minute || '*';
-      data.polkadotRestartHour = this.config.polkadotRestart.hour || '*';
-      data.polkadotRestartDay = this.config.polkadotRestart.day || '*';
-      data.polkadotRestartMonth = this.config.polkadotRestart.month || '*';
-      data.polkadotRestartWeekDay = this.config.polkadotRestart.weekDay || '*';
+    if (this.config.edgewareRestart && this.config.edgewareRestart.enabled) {
+      data.edgewareRestartEnabled = true;
+      data.edgewareRestartMinute = this.config.edgewareRestart.minute || '*';
+      data.edgewareRestartHour = this.config.edgewareRestart.hour || '*';
+      data.edgewareRestartDay = this.config.edgewareRestart.day || '*';
+      data.edgewareRestartMonth = this.config.edgewareRestart.month || '*';
+      data.edgewareRestartWeekDay = this.config.edgewareRestart.weekDay || '*';
     } else {
-      data.polkadotRestartEnabled = false;
+      data.edgewareRestartEnabled = false;
     }
 
     tpl.create(origin, target, data);

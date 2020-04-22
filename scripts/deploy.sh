@@ -8,8 +8,8 @@ done
 
 yarn
 
-if [ ! -z "${POLKADOT_SECURE_VALIDATOR_CONFIG_FILE}" ]; then
-    yarn sync -c "${POLKADOT_SECURE_VALIDATOR_CONFIG_FILE}"
+if [ ! -z "${edgeware_SECURE_VALIDATOR_CONFIG_FILE}" ]; then
+    yarn sync -c "${edgeware_SECURE_VALIDATOR_CONFIG_FILE}"
 else
     yarn sync
 fi

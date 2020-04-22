@@ -1,9 +1,9 @@
 variable "state_project" {
-  default = "polkadot-benchmarks"
+  default = "edgeware-benchmarks"
 }
 
 variable "project_id" {
-  default = "polkadot-benchmarks"
+  default = "edgeware-benchmarks"
 }
 
 variable "client_id" {}
