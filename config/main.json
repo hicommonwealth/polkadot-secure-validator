@@ -1,8 +1,8 @@
 {
   "project": "edgeware-secure-validator",
   "edgewareBinary": {
-    "url": "https://github.com/hicommonwealth/edgeware-node/releases/download/v3.0.5-testnet/edgeware",
-    "checksum": "sha256:a45779762dfa1041e36279a6e3c66f9356565ba139b9024d1d8146e51b827615"
+    "url": "https://github.com/hicommonwealth/edgeware-node/releases/download/v3.0.5-testnet/edgeware-linux",
+    "checksum": "sha256:d5cad9d57ff2d71a3980336489f1ae5b86cb7816ab876bcd3f454c364c248018"
   },
   "nodeExporter": {
     "enabled": true,
