@@ -31,7 +31,7 @@
     url: '{{ edgeware_binary_url | quote }}'
     checksum: '{{ edgeware_binary_checksum | quote }}'
     dest: /usr/local/bin/edgeware-new
-    mode: '0700'
+    mode: "u=rwx,go=rx"
     owner: 'edgeware'
     group: 'edgeware'
 
