@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/w3f/edgeware-secure-validator.svg?style=svg)](https://circleci.com/gh/w3f/edgeware-secure-validator)
+[![CircleCI](https://circleci.com/gh/hicommonwealth/edgeware-secure-validator.svg?style=svg)](https://circleci.com/gh/hicommonwealth/edgeware-secure-validator)
 
 # edgeware Secure Validator Setup
 
@@ -35,7 +35,7 @@ and VPC write access.
 `TF_VAR_client_secret` (same as `ARM_CLIENT_SECRET`). All these credentials
 should correspond to a service principal with at least a `Contributor` role,
 see [here](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)
-for details or [create an issue](https://github.com/w3f/edgeware-secure-validator/issues/new) for
+for details or [create an issue](https://github.com/hicommonwealth/edgeware-secure-validator/issues/new) for
 finer grained access control.
 * GCP: `GOOGLE_APPLICATION_CREDENTIALS` (path to json file with credentials of
 the service account you want to use; this service account needs to have write
@@ -43,7 +43,7 @@ access to compute and network resources).
 * PACKET: `TF_VAR_auth_token`.
 
 The tool allows you to specify which providers to use, so you don't need to have
-accounts in all of them, see [here](https://github.com/w3f/edgeware-secure-validator/blob/master/config/main.sample.json)
+accounts in all of them, see [here](https://github.com/hicommonwealth/edgeware-secure-validator/blob/master/config/main.sample.json)
 for an example of how to define the providers. You could use, for instance,
 packet for the validators and GCP for the public nodes. Keep in mind that, the
 more distributed your public nodes, the fewer opportunities to be affected by

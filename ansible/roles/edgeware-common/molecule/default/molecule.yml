@@ -15,8 +15,8 @@ provisioner:
   inventory:
     host_vars:
       edgeware-common-instance:
-        edgeware_binary_url: 'https://github.com/w3f/edgeware/releases/download/v0.6.2/edgeware'
-        edgeware_binary_checksum: 'sha256:b90443105acf9dbda67bada39541487bc05d935c57275aaf1daafbe5c8a42f3b'
+        edgeware_binary_url: 'https://github.com/hicommonwealth/edgeware/releases/download/v3.0.5-testnet/edgeware'
+        edgeware_binary_checksum: 'sha256:a45779762dfa1041e36279a6e3c66f9356565ba139b9024d1d8146e51b827615'
 verifier:
   name: testinfra
   lint:

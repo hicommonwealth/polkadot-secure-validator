@@ -50,7 +50,7 @@ public-2
 [all:vars]
 project=w3f
 ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ConnectTimeout=15'
-edgeware_binary_url='https://github.com/w3f/edgeware/releases/download/v0.6.11/edgeware'
+edgeware_binary_url='https://github.com/hicommonwealth/edgeware/releases/download/v0.6.11/edgeware'
 edgeware_binary_checksum='sha256:ce6d4fd45f2c3ff91117423ed04c952ddde3b20f393e3ea05a2081f04b8a926b'
 edgeware_network_id=ksmcc2
 build_dir=/home/user/.config/edgeware-secure-validator/build/w3f/ansible

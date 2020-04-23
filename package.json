@@ -2,7 +2,7 @@
   "name": "edgeware-secure-validator",
   "version": "1.0.0",
   "main": "src/index.js",
-  "repository": "https://github.com/w3f/edgeware-secure-validator",
+  "repository": "https://github.com/hicommonwealth/edgeware-secure-validator",
   "author": "W3F Infrastructure Team <devops@web3.foundation>",
   "license": "GPL-3.0",
   "scripts": {

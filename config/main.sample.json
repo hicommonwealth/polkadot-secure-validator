@@ -1,7 +1,7 @@
 {
   "project": "w3f",
   "edgewareBinary": {
-    "url": "https://github.com/w3f/edgeware/releases/download/v0.7.29/edgeware",
+    "url": "https://github.com/hicommonwealth/edgeware/releases/download/v0.7.29/edgeware",
     "checksum": "sha256:e229f984c89e2d40a1786ea634d3eae167c30bb0a5b742cfd800a067a4ed146d"
   },
   "nodeExporter": {
