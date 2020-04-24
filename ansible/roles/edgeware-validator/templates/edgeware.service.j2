@@ -5,7 +5,7 @@ Description=edgeware Node
 User=edgeware
 Group=edgeware
 ExecStart=/usr/local/bin/edgeware \
-         --name {{ project|default('project') }}-sv-validator-{{ groups['validator'].index(inventory_hostname) }} \
+         --name {{ node_name }}-sv-validator-{{ groups['validator'].index(inventory_hostname) }} \
          --validator \
          --listen-addr=/ip4/{{ hostvars[inventory_hostname].vpnpeer_address }}/tcp/30333 \
          --reserved-only \

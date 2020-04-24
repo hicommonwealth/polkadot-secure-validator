@@ -1,3 +1,4 @@
 ---
 # defaults file for edgeware-public
 chain: edgeware
+node_name: cw

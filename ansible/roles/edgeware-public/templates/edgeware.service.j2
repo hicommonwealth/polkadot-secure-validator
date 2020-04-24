@@ -5,7 +5,7 @@ Description=edgeware Node
 User=edgeware
 Group=edgeware
 ExecStart=/usr/local/bin/edgeware \
-         --name {{ project|default('project') }}-sv-public-{{ groups['public'].index(inventory_hostname) }} \
+         --name {{ node_name }}-sv-public-{{ groups['public'].index(inventory_hostname) }} \
          --chain={{ chain }} \
          {% if hostvars[inventory_hostname].edgeware_additional_common_flags is defined and hostvars[inventory_hostname].edgeware_additional_common_flags|length %}
          {{ hostvars[inventory_hostname].edgeware_additional_common_flags }} \
