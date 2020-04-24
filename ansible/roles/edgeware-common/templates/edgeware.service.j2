@@ -4,7 +4,8 @@ Description=Edgeware Dummy Node
 [Service]
 User=edgeware
 Group=edgeware
-ExecStart=/usr/local/bin/edgeware --dev \
+ExecStart=/usr/local/bin/edgeware \
+		 --chain=edgeware \
          --name edgeware-dummy \
          --validator
 
