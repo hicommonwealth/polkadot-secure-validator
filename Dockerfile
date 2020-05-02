@@ -5,16 +5,28 @@ LABEL description="This image contains tools for setting up a secure substrate v
 ################################
 # Install Yarn & dependencies
 ################################
+# Replace shell with bash so we can source files
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-# Must have packages
-RUN apt-get update && apt-get install -y vim wget curl git sudo unzip
+# Install base dependencies
+RUN apt-get update && apt-get install -y -q --no-install-recommends \
+        apt-transport-https \
+        build-essential \
+        ca-certificates \
+        curl \
+        git \
+        libssl-dev \
+        wget \
+        unzip \
+        sudo \
+    && rm -rf /var/lib/apt/lists/*
 
-# Add none root user
-USER root
+ENV NVM_DIR /root/.nvm
 
-# install nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-RUN nvm install node
+# Install nvm with node and npm
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install node
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
