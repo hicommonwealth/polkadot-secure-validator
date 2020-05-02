@@ -4,3 +4,7 @@ ansible/inventory
 ansible/**/__pycache__
 yarn-error.log
 .env
+node_rsa
+node_rsa.pub
+val_rsa.pub
+val_rsa

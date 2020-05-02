@@ -1,8 +1,8 @@
 {
-  "project": "edgeware-secure-validator",
+  "project": "cw-kusmama",
   "polkadotBinary": {
-    "url": "https://github.com/hicommonwealth/edgeware-node/releases/download/v3.0.1/edgeware",
-    "checksum": "sha256:8526b29d3c4fb50b0b14e8bbd8802d11c11a86d8dfefe56256b924287514e514"
+    "url": "https://github.com/paritytech/polkadot/releases/download/v0.7.32/polkadot",
+    "checksum": "sha256:c34d63e5d80994b2123a3a0b7c5a81ce8dc0f257ee72064bf06654c2b93e31c9"
   },
   "nodeExporter": {
     "enabled": true,
@@ -11,9 +11,9 @@
       "checksum": "sha256:b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424"
     }
   },
-  "polkadotNetworkId": "edgeware",
+  "polkadotNetworkId": "ksmcc3",
   "state": {
-    "project": "edgeware-validators"
+    "project": "kusama-validators"
   },
   "validators": {
     "loggingFilter": "sync=trace,afg=trace,aura=debug",
